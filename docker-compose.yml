@@ -1,0 +1,19 @@
+version: "3"
+services:
+  web:
+    container_name: nginx
+    image: nginx:latest
+    restart: always
+    environment:
+      - TZ=Europe/Moscow
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - ./nginx:/etc/nginx
+      - /etc/ssl/certs/nginx-selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt
+      - /etc/ssl/private/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key
+      - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem
+    network_mode: bridge  
+ 
